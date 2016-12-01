@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="ScenariosApp">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="../js/angular/angular.min.js"></script>
+	<script type="text/javascript" src="../js/angular/angular-translate.min.js"></script>
+	<script type="text/javascript" src="../js/angular/angular-translate-loader-partial.min.js"></script>
+	<script type="text/javascript" src="../js/angular/angular-sanitize.min.js"></script>
+	<script type="text/javascript" src="../services/scenarios.services.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../controller/controller.js"></script>
+<!-- 	<link rel='stylesheet' href="../css/bootstrap/css/bootstrap.css"></link> -->
+</head>
+<body>
+	<div ng-controller="ScenariosCtrl">
+		
+		<h3 id="title">{{ 'lang' | translate }}:</h3>
+		<select ng-model="language" ng-change="changeLang();">
+			<option value="en">{{ 'en' | translate }}</option>
+			<option value="fr">{{ 'fr' | translate }}</option>
+        </select>
+		
+		<h3 id="title">{{ 'allscenarios' | translate }}:</h3>
+		<select ng-model="runScenarioId">
+            <option ng-repeat="scenario in scenarios" value="{{scenario.scenarioId}}">{{ scenario.title }}</option>
+        </select>
+        <button ng-click="runScenario();" class="btn btn-primary">{{ 'run' | translate }}</button>
+
+	</div>
+
+</body>
+</html>

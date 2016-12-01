@@ -1,5 +1,5 @@
-# wiitty-manager
-wiitty-manager is a Web Interface to manage and launch scenarios Gherkin-Cucumber (UX Testing)
+# WIITTY Manager
+WIITTY Manager is a Web Interface to manage and launch scenarios Gherkin-Cucumber (UX Testing)
 
 # Supported languages
 
@@ -13,7 +13,7 @@ The Web Interface is available in several languages (French and English for now)
 * Italian (in progress)
 * Dutch (in progress)
 	
-If wiitty-manager not support your language? Please help us with a PR!
+If WIITTY Manager not support your language? Please help us with a PR!
 
 # Travis CI status
 

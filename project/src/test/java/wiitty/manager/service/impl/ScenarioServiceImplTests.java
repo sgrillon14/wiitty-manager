@@ -51,8 +51,8 @@ public class ScenarioServiceImplTests extends AbstractTestNGSpringContextTests {
     @Test
     public void testGetScenario() {
         Scenario actualScenario = scenarioService.getScenario(1);
-        assertThat(actualScenario.getScenarioId()).isEqualTo(1);
-        assertThat(actualScenario.getTitle()).isEqualTo("DEMO");
+        assertThat(1).isEqualTo(actualScenario.getScenarioId());
+        assertThat("DEMO").isEqualTo(actualScenario.getTitle());
     }
 
 }

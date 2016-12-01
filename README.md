@@ -42,22 +42,20 @@ WIITTY Manager run anywhere the JVM does. Deploy standalone, in an app server, o
 UX (AngularJS 1):
 * http://localhost:8089
 
-![sampleAngularjs1](/screenshots/sampleAngularjs1.png)
 
 use cases:
-* http://localhost:8084/flags/api/countries return a list of countries (in English) 
-* http://localhost:8084/flags/api/countries?lang=en return a list of countries (in English)
-* http://localhost:8084/flags/api/countries?lang=fr return a list of countries (in French)
-* http://localhost:8084/flags/api/fr return 200 OK and svg (French flag)
-* http://localhost:8084/flags/api/fr/40/40 return 200 OK and png (French flag)
+* http://localhost:8089/wiitty/api/scenarios return a list of scenarios (in English) 
+* http://localhost:8089/wiitty/api/scenarios?lang=en return a list of scenarios (in English)
+* http://localhost:8089/wiitty/api/scenarios?lang=fr return a list of scenarios (in French)
+* http://localhost:8089/wiitty/api/scenario/1 return scenario N°1
+* http://localhost:8089/wiitty/api/run/scenario/1 return OK String in body and run scenario N°1 (asynchronously)
 
 Errors cases:
-* http://localhost:8084/flags/api/countries?lang=fakecode return a list of countries (in English)
-* http://localhost:8084/flags/api/fakecode return 204 No Content
-* http://localhost:8084/flags/api/fakecode/40/40 return 204 No Content
+* http://localhost:8089/wiitty/api/scenarios?lang=fakecode return a list of scenarios (in English)
+* http://localhost:8089/wiitty/api/scenario/0 return 204 No Content
 
 # JSON response (Example)
-
+[{"scenarioId":1,"title":"Demo Scenario 1"},{"scenarioId":2,"title":"Demo Scenario 2"}]
 
 
 # License

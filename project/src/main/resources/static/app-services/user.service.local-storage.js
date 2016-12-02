@@ -33,9 +33,9 @@
             return deferred.promise;
         }
 
-        function GetByUsername(username) {
+        function GetByUsername(userName) {
             var deferred = $q.defer();
-            var filtered = $filter('filter')(getUsers(), { username: username });
+            var filtered = $filter('filter')(getUsers(), { userName: userName });
             var user = filtered.length ? filtered[0] : null;
             deferred.resolve(user);
             return deferred.promise;
@@ -46,10 +46,10 @@
 
             // simulate api call with $timeout
             $timeout(function () {
-                GetByUsername(user.username)
+                GetByUsername(user.userName)
                     .then(function (duplicateUser) {
                         if (duplicateUser !== null) {
-                            deferred.resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
+                            deferred.resolve({ success: false, message: 'Username "' + user.userName + '" is already taken' });
                         } else {
                             var users = getUsers();
 

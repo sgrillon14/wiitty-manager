@@ -15,19 +15,19 @@
 
         return service;
 
-        function Login(username, password, callback) {
-            $http.post('/wiitty/api/authenticate', { username: username, password: password })
+        function Login(userName, password, callback) {
+            $http.post('/wiitty/api/authenticate', { userName: userName, password: password })
                 .success(function (response) {
                     callback(response);
                 });
         }
 
-        function SetCredentials(username, password) {
-            var authdata = Base64.encode(username + ':' + password);
+        function SetCredentials(userName, password) {
+            var authdata = Base64.encode(userName + ':' + password);
 
             $rootScope.globals = {
                 currentUser: {
-                    username: username,
+                	userName: userName,
                     authdata: authdata
                 }
             };

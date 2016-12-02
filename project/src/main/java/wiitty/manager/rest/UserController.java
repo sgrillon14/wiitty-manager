@@ -29,12 +29,12 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,21 +62,38 @@ public class UserController {
      */
     @CrossOrigin(origins = "http://localhost:8089")
     @RequestMapping(value = "/users/{userName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getByUsername(@PathVariable String userName) {
+    public ResponseEntity<User> getByUsername(@PathVariable String userName, HttpEntity<String> requestEntity) {
+        String smUniversalId = requestEntity.getHeaders().getFirst("sm_universalid");
+        String role = requestEntity.getHeaders().getFirst("ftapplicationroles");
         LOGGER.debug("getByUsername : userName[{}]", userName);
-        User user = userService.getByUsername(userName);
+        User user;
+        if (smUniversalId != null && !"".equals(smUniversalId) && "ADMIN".equals(role)) {
+            // SSO user DBA (deactivate this part if you do not use SSO system)
+            user = new User("", "", smUniversalId, "", "ADMIN");
+        } else {
+            // local user DBA
+            user = userService.getByUsername(userName);
+        }
         return Optional.ofNullable(user).map(result -> new ResponseEntity<>(result, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @CrossOrigin(origins = "http://localhost:8089")
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Authenticate authenticate(@ModelAttribute User user) {
+    public @ResponseBody Authenticate authenticate(HttpEntity<User> requestEntity) {
+        String smUniversalId = requestEntity.getHeaders().getFirst("sm_universalid");
+        String role = requestEntity.getHeaders().getFirst("ftapplicationroles");
+        User user = requestEntity.getBody();
         LOGGER.debug("getByUsername : userName[{}] and password[{}]", user.getUserName(), user.getPassword());
+        // local user DBA
         User userFind = userService.getByUsername(user.getUserName());
         if (userFind != null && userFind.getPassword().equals(user.getPassword())) {
-            return new Authenticate();
+            return new Authenticate(true, null);
         }
-        return new Authenticate(true, null);
+        // SSO user DBA (deactivate this part if you do not use SSO system)
+        if (smUniversalId != null && !"".equals(smUniversalId) && "ADMIN".equals(role)) {
+            return new Authenticate(true, null);
+        }
+        return new Authenticate();
     }
 
 }

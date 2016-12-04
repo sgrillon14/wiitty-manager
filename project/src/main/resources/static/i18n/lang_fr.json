@@ -1,8 +1,11 @@
 {
 	"LANG":"Sélectionnez une langue",
 	"LANGUAGE" : {
+	    "DE":"Allemand",
 		"EN":"Anglais",
+		"ES":"Espagnol",
 		"FR":"Français"
+	    "IT":"Italien"
 	},
 	"USERNAME":"Pseudo",
 	"PASSWORD":"Mot de passe",

@@ -91,7 +91,7 @@ public class UserController {
         }
         // SSO user DBA (deactivate this part if you do not use SSO system)
         if (smUniversalId != null && !"".equals(smUniversalId) && "ADMIN".equals(role)) {
-            return new Authenticate(true, null);
+            return new Authenticate(true, "sso");
         }
         return new Authenticate();
     }

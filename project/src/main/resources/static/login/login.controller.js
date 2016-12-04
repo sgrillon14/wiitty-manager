@@ -23,6 +23,11 @@
                 if (response.success) {
                     AuthenticationService.SetCredentials(vm.userName, vm.password);
                     $location.path('/');
+                    if(response.message === "sso"){
+                    	$rootScope.showLogout = false;
+                    } else {
+                    	$rootScope.showLogout = true;
+                    }
                 } else {
                     FlashService.Error($translate.instant(response.message));
                     vm.dataLoading = false;

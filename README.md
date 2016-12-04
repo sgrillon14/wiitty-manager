@@ -3,15 +3,13 @@ WIITTY Manager is a Web Interface to manage and launch scenarios Gherkin-Cucumbe
 
 # Supported languages
 
-The Web Interface is available in several languages (French and English for now). These are the currently supported languages:
+The Web Interface is available in several languages (valided in French and English for now). These are the currently supported languages:
 
 * French
 * English
-* Czech (in progress)
-* German (in progress)
-* Spanish (in progress)
-* Italian (in progress)
-* Dutch (in progress)
+* German
+* Spanish
+* Italian
 	
 If WIITTY Manager not support your language? Please help us with a PR!
 

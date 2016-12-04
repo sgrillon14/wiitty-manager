@@ -1,4 +1,5 @@
 /*
+ * MIT License
  * Copyright (c) 2016 Stéphane GRILLON https://github.com/sgrillon14/wiitty-manager
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without

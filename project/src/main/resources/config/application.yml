@@ -3,3 +3,6 @@ spring:
         name: wiitty-manager
 server:
     port: 8089
+authentication:
+    # sso or local
+    mode: sso

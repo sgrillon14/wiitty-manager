@@ -68,7 +68,7 @@ public class ScenariosControllerTests extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void ggetAllScenariosFr() throws Exception {
+    public void getAllScenariosFr() throws Exception {
         ResponseEntity<List> entity = new TestRestTemplate().getForEntity("http://localhost:" + port + "/wiitty/api/scenarios?lang=fr", List.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(entity.getBody().size()).isEqualTo(2);
